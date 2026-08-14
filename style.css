@@ -285,6 +285,12 @@ a:focus-visible,
 }
 
 .poster-wrap {
+  --ticket-edge: 6%;
+  --ticket-top: 5%;
+  --ticket-bottom: 5%;
+  --ticket-hole-size: clamp(1.1rem, 4vw, 1.55rem);
+  --ticket-line-gap: clamp(1rem, 3vw, 1.45rem);
+  position: relative;
   min-height: 0;
   overflow: hidden;
   border-radius: calc(var(--radius-large) - 10px);
@@ -297,6 +303,63 @@ a:focus-visible,
   height: 100%;
   min-height: 21rem;
   object-fit: cover;
+}
+
+.poster-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(17, 10, 13, 0.18), transparent 18%, transparent 76%, rgba(17, 10, 13, 0.38)),
+    linear-gradient(90deg, rgba(17, 10, 13, 0.26), transparent 18%, transparent 82%, rgba(17, 10, 13, 0.26));
+}
+
+.poster-wrap::after {
+  content: "";
+  position: absolute;
+  top: var(--ticket-top);
+  right: calc(var(--ticket-edge) + var(--ticket-hole-size) + var(--ticket-line-gap));
+  bottom: var(--ticket-bottom);
+  left: calc(var(--ticket-edge) + var(--ticket-hole-size) + var(--ticket-line-gap));
+  z-index: 2;
+  pointer-events: none;
+  border-top: 2px solid rgba(255, 255, 255, 0.78);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.56);
+  opacity: 0.64;
+}
+
+.ticket-pattern {
+  position: absolute;
+  top: var(--ticket-top);
+  right: var(--ticket-edge);
+  bottom: var(--ticket-bottom);
+  left: var(--ticket-edge);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ticket-pattern::before,
+.ticket-pattern::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--ticket-hole-size);
+  background-image: url("data:image/svg+xml,%3Csvg width='28' height='70' viewBox='0 0 28 70' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1.5' y='1.5' width='25' height='25' rx='3' fill='none' stroke='%23ffffff' stroke-opacity='0.88' stroke-width='2.2'/%3E%3C/svg%3E");
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-size: 100% 4.35rem;
+  opacity: 0.72;
+}
+
+.ticket-pattern::before {
+  left: 0;
+}
+
+.ticket-pattern::after {
+  right: 0;
 }
 
 .booking-content {
