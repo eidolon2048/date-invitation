@@ -21,7 +21,7 @@ Place the movie poster at:
 assets/poster.jpg
 ```
 
-Keep the same filename if you do not want to edit the HTML. A temporary placeholder poster is included so the site renders immediately.
+Keep the same filename if you do not want to edit the HTML. The current Spider-Man poster is included as `assets/poster.jpg`.
 
 ## QR Or Ticket Images
 
